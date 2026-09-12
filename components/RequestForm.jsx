@@ -103,9 +103,7 @@ export default function RequestForm() {
       noValidate
       className="rounded-2xl border border-slate-200 bg-white p-5 shadow-card sm:p-6"
     >
-      <h3 className="text-lg font-extrabold tracking-tight text-ink">
-        Request a callback
-      </h3>
+      <h3 className="text-lg font-extrabold tracking-tight text-ink">Request a callback</h3>
       <p className="mt-1 text-[13px] text-slate-500">
         Takes about 20 seconds. Emergency? Call instead — it&apos;s faster.
       </p>
@@ -122,7 +120,7 @@ export default function RequestForm() {
               type="text"
               autoComplete="name"
               required
-              placeholder="First &amp; last name"
+              placeholder="First and last name"
               className={fieldClass}
             />
           </div>
@@ -147,7 +145,12 @@ export default function RequestForm() {
           <label htmlFor="rf-service" className="mb-1.5 block text-[13px] font-bold text-slate-700">
             What do you need?
           </label>
-          <select id="rf-service" name="service" defaultValue={SERVICE_OPTIONS[0]} className={fieldClass}>
+          <select
+            id="rf-service"
+            name="service"
+            defaultValue={SERVICE_OPTIONS[0]}
+            className={fieldClass}
+          >
             {SERVICE_OPTIONS.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -184,7 +187,7 @@ export default function RequestForm() {
               name="city"
               type="text"
               autoComplete="address-level2"
-              placeholder="Saucier, Gulfport, Wiggins…"
+              placeholder="Saucier, Gulfport, Wiggins"
               className={fieldClass}
             />
           </div>
@@ -196,7 +199,7 @@ export default function RequestForm() {
               id="rf-notes"
               name="notes"
               type="text"
-              placeholder="Mobile home, unit brand, since when…"
+              placeholder="Mobile home, unit brand, since when"
               className={fieldClass}
             />
           </div>
@@ -209,7 +212,10 @@ export default function RequestForm() {
         </div>
 
         {error ? (
-          <p role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-[13px] font-semibold text-red-700">
+          <p
+            role="alert"
+            className="rounded-xl bg-red-50 px-4 py-3 text-[13px] font-semibold text-red-700"
+          >
             {error}
           </p>
         ) : null}
@@ -223,8 +229,8 @@ export default function RequestForm() {
         </button>
 
         <p className="text-center text-[12px] leading-relaxed text-slate-500">
-          We only use your info to schedule your service. Licensed &amp; insured MS HVAC
-          contractor · {PHONE}
+          We only use your info to schedule your service. Licensed &amp; insured MS HVAC contractor
+          · {PHONE}
         </p>
       </div>
     </form>
