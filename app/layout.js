@@ -51,7 +51,8 @@ export const metadata = {
     },
   },
   category: 'HVAC',
-  formatDetection: { telephone: true, address: false, email: false },
+  // Turn OFF iOS phone-number auto-detection so our own tel: links stay the only tappable numbers.
+  formatDetection: { telephone: false, address: false, email: false },
 }
 
 export const viewport = {
