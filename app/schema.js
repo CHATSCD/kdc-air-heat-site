@@ -1,14 +1,13 @@
 import { AREAS, BUSINESS, FAQS, PHONE, SERVICES, SITE_URL, TESTIMONIALS } from '@/lib/site'
 
-const dayOfWeek = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
-]
+const dayOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+const alwaysOpen = {
+  '@type': 'OpeningHoursSpecification',
+  dayOfWeek,
+  opens: '00:00',
+  closes: '23:59',
+}
 
 export const localBusinessSchema = {
   '@context': 'https://schema.org',
@@ -46,21 +45,17 @@ export const localBusinessSchema = {
     { '@type': 'City', name: 'Perkinston, MS' },
     { '@type': 'City', name: 'Lyman, MS' },
   ],
-  openingHoursSpecification: [
+  openingHoursSpecification: [alwaysOpen],
+  contactPoint: [
     {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek,
-      opens: '00:00',
-      closes: '23:59',
+      '@type': 'ContactPoint',
+      telephone: '+1-228-255-7030',
+      contactType: 'emergency',
+      areaServed: 'US-MS',
+      availableLanguage: 'English',
+      hoursAvailable: alwaysOpen,
     },
   ],
-  specialOpeningHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    description: '24/7 emergency response line — nights, weekends and holidays.',
-    dayOfWeek,
-    opens: '00:00',
-    closes: '23:59',
-  },
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: BUSINESS.rating,
@@ -80,47 +75,42 @@ export const localBusinessSchema = {
       worstRating: '1',
     },
   })),
-  makesOffer: SERVICES.map((s) => ({
-    '@type': 'Offer',
-    itemOffered: {
-      '@type': 'Service',
-      name: s.name,
-      description: s.desc,
-      serviceType: s.name,
-      areaServed: { '@type': 'AdministrativeArea', name: 'Harrison & Stone County, MS' },
-      provider: { '@type': 'HVACBusiness', name: 'KDC Air & Heat LLC', telephone: '+1-228-255-7030' },
-    },
-  })),
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'HVAC Services',
+    name: 'HVAC services',
     itemListElement: SERVICES.map((s) => ({
       '@type': 'Offer',
-      itemOffered: { '@type': 'Service', name: s.name },
+      itemOffered: {
+        '@type': 'Service',
+        name: s.name,
+        description: s.desc,
+        serviceType: s.name,
+        provider: {
+          '@type': 'HVACBusiness',
+          name: 'KDC Air & Heat LLC',
+          telephone: '+1-228-255-7030',
+        },
+        areaServed: {
+          '@type': 'AdministrativeArea',
+          name: 'Harrison & Stone County, MS',
+        },
+      },
     })),
   },
-  contactPoint: [
-    {
-      '@type': 'ContactPoint',
-      telephone: '+1-228-255-7030',
-      contactType: 'emergency',
-      areaServed: 'US-MS',
-      availableLanguage: 'English',
-      hoursAvailable: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek,
-        opens: '00:00',
-        closes: '23:59',
-      },
-    },
-  ],
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Years in business', value: '20+' },
     { '@type': 'PropertyValue', name: 'Average response time', value: '30 minutes' },
     { '@type': 'PropertyValue', name: 'Licensing', value: BUSINESS.license },
     { '@type': 'PropertyValue', name: 'Specialty', value: 'Mobile home HVAC systems' },
+    { '@type': 'PropertyValue', name: 'Availability', value: '24/7 emergency response line' },
   ],
-  serviceArea: AREAS.primary.map((a) => a.city),
+  knowsAbout: [
+    'Emergency air conditioning repair',
+    'Mobile home HVAC systems',
+    'Heat pump replacement',
+    'Ductwork repair and sealing',
+    'Thermostat installation',
+  ],
   potentialAction: {
     '@type': 'CommunicateAction',
     name: `Call ${PHONE} for 24/7 emergency AC service`,
