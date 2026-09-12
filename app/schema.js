@@ -1,4 +1,4 @@
-import { AREAS, BUSINESS, FAQS, PHONE, SERVICES, SITE_URL, TESTIMONIALS } from '@/lib/site'
+import { BUSINESS, FAQS, PHONE, SERVICES, SITE_URL, TESTIMONIALS } from '@/lib/site'
 
 const dayOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
